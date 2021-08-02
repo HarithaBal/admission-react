@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes } from "./components/Routes";
 import "antd/dist/antd.css";
 import "react-gravatar-or-initials/dist/index.css";
+import "./styles/app.scss";
 import { DeclarationService } from "./components/services/DeclarationService";
 import { DataService } from "./components/services/DataService";
 import { AuthService } from "./components/services/AuthService";
