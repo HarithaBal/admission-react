@@ -10,8 +10,8 @@ import { CommunityData } from "../forms/CommunityData";
 
 export const Community = () => {
   const { isAvailable, set, reset } = useContext(CommunityDataContext);
-  const [loading, setLoading] = useState(false);
   const { token } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
     setLoading(true);

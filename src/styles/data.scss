@@ -1,0 +1,16 @@
+.detail-container {
+  display: flex;
+  align-items: center;
+
+  &--type {
+    flex: 1;
+    text-align: right;
+    margin-right: 1em;
+    color: $gray;
+  }
+
+  &--value {
+    flex: 1;
+    font-weight: bold;
+  }
+}

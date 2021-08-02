@@ -1,11 +1,16 @@
 // Variables
 @import "variables";
 @import "./layout.scss";
+@import "./data.scss";
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  font-family: $font;
 }
 
 .container {
