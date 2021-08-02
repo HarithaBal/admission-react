@@ -10,7 +10,7 @@ import { CommunityData } from "../forms/CommunityData";
 
 export const Community = () => {
   const { isAvailable, set, reset } = useContext(CommunityDataContext);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { token } = useContext(AuthContext);
 
   const fetchData = async () => {
@@ -27,7 +27,9 @@ export const Community = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    if (!isAvailable) {
+      fetchData();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

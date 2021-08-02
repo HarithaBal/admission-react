@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { createContext } from "react";
 import jwt_decode from "jwt-decode";
-import { persistValue, getPersistedValue } from "../utils/helpers";
+import { useCustomState } from "../hooks/useCustomState";
 
 export const AuthContext = createContext(null);
 
@@ -14,17 +14,7 @@ const defaultValue = {
 };
 
 export const AuthService = ({ children }) => {
-  const [state, setState] = useState(
-    getPersistedValue(PERSIST_KEY, defaultValue)
-  );
-
-  const updateState = (type, value) => {
-    setState((state) => {
-      const tempState = { ...state };
-      tempState[type] = value;
-      return tempState;
-    });
-  };
+  const [state, updateState] = useCustomState(defaultValue, PERSIST_KEY);
 
   const setIsAuthenticated = (value) => {
     updateState("isAuthenticated", value);
@@ -49,10 +39,6 @@ export const AuthService = ({ children }) => {
     setToken(null);
     setUser(null);
   };
-
-  useEffect(() => {
-    persistValue(PERSIST_KEY, state);
-  }, [state]);
 
   return (
     <AuthContext.Provider value={{ ...state, authenticate, logout }}>
