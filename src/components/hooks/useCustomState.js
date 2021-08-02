@@ -1,10 +1,7 @@
-import { useState, useEffect } from "react";
-import { getPersistedValue, persistValue } from "../utils/helpers";
+import { usePersistedState } from "./usePersistedState";
 
 export const useCustomState = (defaultValue, persistKey) => {
-  const [state, setState] = useState(
-    getPersistedValue(persistKey, defaultValue)
-  );
+  const [state, setState] = usePersistedState(defaultValue, persistKey);
 
   const updateState = (type, value) => {
     setState((state) => {
@@ -13,10 +10,6 @@ export const useCustomState = (defaultValue, persistKey) => {
       return tempState;
     });
   };
-
-  useEffect(() => {
-    persistValue(persistKey, state);
-  }, [persistKey, state]);
 
   return [state, updateState, setState];
 };
