@@ -10,6 +10,7 @@ import { Community } from "./pages/Community";
 import { Profile } from "./pages/Profile";
 import { Management } from "./pages/Management";
 import { Payment } from "./pages/Payment";
+import { DocumentsForm } from "./forms/DocumentsForm";
 
 export const Routes = () => {
   return (
@@ -20,6 +21,7 @@ export const Routes = () => {
       <Route path="/verifyUser" component={VerifyUser} />
       <ProtectedRoute exact path="/forms/management" component={Management} />
       <ProtectedRoute exact path="/forms/community" component={Community} />
+      <ProtectedRoute exact path="/forms/documents" component={DocumentsForm} />
       <ProtectedRoute path="/profile" component={Profile} />
       <ProtectedRoute path="/payment" component={Payment} />
       <Route component={NotFound} />
