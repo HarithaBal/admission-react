@@ -42,3 +42,16 @@ export const updatePasswordRequest = (values, token) => {
   api.defaults.headers.common = { Authorization: `bearer ${token}` };
   return api.put(`/api/users/updatePassword`, values);
 };
+
+export const getLogsRequest = (token) => {
+  api.defaults.headers.common = { Authorization: `bearer ${token}` };
+  return api.get(`/api/logs`);
+};
+
+export const addPaymentData = (values, token) => {
+  api.defaults.headers.common = { Authorization: `bearer ${token}` };
+  return api.post("/api/details", {
+    meta: values,
+    doc_type: "payment",
+  });
+};

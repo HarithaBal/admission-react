@@ -9,6 +9,7 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import { Community } from "./pages/Community";
 import { Profile } from "./pages/Profile";
 import { Management } from "./pages/Management";
+import { Payment } from "./pages/Payment";
 
 export const Routes = () => {
   return (
@@ -20,6 +21,7 @@ export const Routes = () => {
       <ProtectedRoute exact path="/forms/management" component={Management} />
       <ProtectedRoute exact path="/forms/community" component={Community} />
       <ProtectedRoute path="/profile" component={Profile} />
+      <ProtectedRoute path="/payment" component={Payment} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -1,0 +1,46 @@
+.payment {
+  display: flex;
+
+  &-logs,
+  &-form {
+    flex: 1;
+    padding: 1em;
+  }
+}
+
+.tag-payment {
+  padding: 0.4em;
+  font-size: 1em;
+}
+
+.payment-logs {
+  h4 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span {
+      font-weight: bold;
+      font-size: 1.2em;
+      padding-left: 0.3em;
+    }
+  }
+}
+
+.logs {
+  display: flex;
+}
+
+.log-item {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0;
+
+  flex: 1;
+  &--type {
+    font-size: 1em;
+    color: $gray;
+  }
+  &--value {
+    font-size: 1.3em;
+  }
+}
