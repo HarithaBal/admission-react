@@ -186,15 +186,26 @@ export const ManagementForm = () => {
                 <Guardian />
 
                 <Item
-                    name="community"
-                    label="Community Name"
+                    name="religion"
+                    label="Religion"
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <Input type="text" placeholder="Community" />
+                    <Input type="text" placeholder="Religion" />
+                </Item>
+                <Item
+                    name="caste"
+                    label="Caste"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input type="text" placeholder="Caste" />
                 </Item>
 
                 <Item
@@ -214,7 +225,7 @@ export const ManagementForm = () => {
 
                 <Item
                     name="differently_abled"
-                    label="Whether applicant is differently abled (Choose relevant)"
+                    label="Whether applicant is differently abled (Choose relevant). If applicable, attach the medical certificate and supporting documents."
                     rules={[
                         {
                             required: true,
@@ -232,6 +243,18 @@ export const ManagementForm = () => {
                 <Marks />
                 <Divider />
                 <Preferences />
+                <Divider />
+                <Item
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                    label="Second language chosen"
+                    name="second_language"
+                >
+                    <Input placeholder="Eg: Hindi" />
+                </Item>
                 <Divider />
                 <Declaration />
 

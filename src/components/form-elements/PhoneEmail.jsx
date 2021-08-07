@@ -12,7 +12,7 @@ export const PhoneEmail = () => {
                 value={phone}
                 onChange={setPhone}
                 type="number"
-                placeholder="+91 98765 43210"
+                placeholder="Whatsapp Number :+91 98765 43210"
             />
             <div className="label">Email Address (if any)</div>
             <Input

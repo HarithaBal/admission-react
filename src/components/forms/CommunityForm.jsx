@@ -154,20 +154,10 @@ export const CommunityForm = () => {
 
                 <Address />
 
-                <Card title="Religion and caste / community">
+                <Card title="Caste / community">
+                    
                     <Item
-                        name="religion"
-                        label="Religion"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input placeholder="XYZ" />
-                    </Item>{" "}
-                    <Item
-                        name="caste_community"
+                        name="caste_name"
                         label="Caste / Community"
                         rules={[
                             {
@@ -175,14 +165,25 @@ export const CommunityForm = () => {
                             },
                         ]}
                     >
-                        <Input placeholder="ABC Religion, XYZ Caste" />
+                        <Input placeholder="Latin Catholic/Anglo-Indian" />
                     </Item>
                 </Card>
 
                 <Card title="Name of Parish and Diocese">
                     <Item
+                        name="diocese_name"
+                        label="Diocese"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Item>
+                    <Item
                         name="parish_name"
-                        label="Name"
+                        label="Parish"
                         rules={[
                             {
                                 required: true,

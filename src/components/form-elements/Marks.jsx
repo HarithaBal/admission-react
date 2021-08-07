@@ -158,7 +158,7 @@ export const Marks = () => {
               />
               <Input
                 type="text"
-                placeholder="Maximum Marks / Grade"
+                placeholder="Grade"
                 className="flex-1"
                 value={otherGrade.maxMarks}
                 onChange={(e) => {
