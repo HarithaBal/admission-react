@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import notFound from "../../images/404.gif";
+import { StudentLayout } from "../layouts/StudentLayout";
 
 export const NotFound = () => {
-    return (
-        <div>
-            <h1>404 Not found</h1>
-        </div>
-    )
-}
+  return (
+    <StudentLayout>
+      <div className="flex-center">
+        <img src={notFound} alt="Not found" />
+      </div>
+    </StudentLayout>
+  );
+};

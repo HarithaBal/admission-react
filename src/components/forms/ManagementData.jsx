@@ -1,18 +1,18 @@
 import { Card, Divider } from "antd";
 import React, { useContext } from "react";
 import { FormHeader } from "../FormHeader";
-import { CommunityDataContext } from "../services/CommunityDataService";
+import { ManagementDataContext } from "../services/ManagementDataService";
 
-export const CommunityData = () => {
-  const { data } = useContext(CommunityDataContext);
+export const ManagementData = () => {
+  const { data } = useContext(ManagementDataContext);
   const details = data.data;
 
   return (
     <>
       <FormHeader />
       <div className="form--heading">
-        <h2>Community Quota</h2>
-        {data && <h2>{"Application Number: 2021-22/C/0" + data.id}</h2>}
+        <h2>Management Quota</h2>
+        {data && <h2>{"Application Number: 2021-22/M/0" + data.id}</h2>}
       </div>
       <Divider />
 

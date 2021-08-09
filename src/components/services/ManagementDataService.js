@@ -1,16 +1,16 @@
 import React, { createContext } from "react";
 import { useCustomState } from "../hooks/useCustomState";
 
-export const CommunityDataContext = createContext(null);
+export const ManagementDataContext = createContext(null);
 
-const PERSIST_KEY = "communityData";
+const PERSIST_KEY = "managementData";
 
 const defaultValue = {
   isAvailable: false,
   data: null,
 };
 
-export const CommunityDataService = ({ children }) => {
+export const ManagementDataService = ({ children }) => {
   const [state, updateState] = useCustomState(defaultValue, PERSIST_KEY);
 
   const setIsAvailable = (value) => {
@@ -32,7 +32,7 @@ export const CommunityDataService = ({ children }) => {
   };
 
   return (
-    <CommunityDataContext.Provider
+    <ManagementDataContext.Provider
       value={{
         ...state,
         set,
@@ -40,6 +40,6 @@ export const CommunityDataService = ({ children }) => {
       }}
     >
       {children}
-    </CommunityDataContext.Provider>
+    </ManagementDataContext.Provider>
   );
 };

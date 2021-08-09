@@ -1,0 +1,96 @@
+.payment {
+  display: flex;
+
+  &-logs,
+  &-form {
+    flex: 1;
+    padding: 1em;
+  }
+}
+
+.tag-payment {
+  padding: 0.4em;
+  font-size: 1em;
+}
+
+.payment-logs {
+  h4 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span {
+      font-weight: bold;
+      font-size: 1.2em;
+      padding-left: 0.3em;
+    }
+  }
+}
+
+.logs {
+  display: flex;
+}
+
+.log-item {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0;
+
+  flex: 1;
+  &--type {
+    font-size: 1em;
+    color: $gray;
+  }
+  &--value {
+    font-size: 1.3em;
+  }
+}
+
+.documents {
+  .contents {
+    display: flex;
+    flex-wrap: wrap;
+
+    position: relative;
+
+    .ant-card {
+      flex: 2;
+      margin: 1em;
+      min-width: calc(50% - 2em);
+    }
+  }
+}
+
+.disabled-overlay {
+  display: none;
+}
+
+.disabled {
+  pointer-events: none;
+
+  .ant-card {
+    opacity: 0.2;
+  }
+
+  .disabled-overlay {
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba($blue, 0.4);
+
+    z-index: 2;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 5px;
+
+    span {
+      font-size: 3em;
+    }
+  }
+}

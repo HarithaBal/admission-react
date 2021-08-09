@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { usePersistedState } from "./usePersistedState";
 
-export const useTextField = (initialValue) => {
-  const [value, setValue] = useState(initialValue);
+export const useTextField = (defaultValue, persistKey = "temp") => {
+  const [value, setValue] = usePersistedState(defaultValue, persistKey);
 
   const updateValue = (e) => {
     setValue(e.target.value);
