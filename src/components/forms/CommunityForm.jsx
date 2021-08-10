@@ -7,6 +7,7 @@ import {
   Checkbox,
   message,
   Select,
+  Cascader
 } from "antd";
 import React, { useContext } from "react";
 import { Declaration } from "../Declaration";
@@ -33,7 +34,55 @@ export const CommunityForm = () => {
   const { token } = useContext(AuthContext);
   const { accepted, place } = useContext(DeclarationContext);
   const { set } = useContext(CommunityDataContext);
-  const { Option } = Select;
+  const options= [
+    {
+      value:'Kerala',
+      label:'Kerala',
+      children:[
+        {
+          value:'Kochi',
+          label:'Kochi',
+        },
+        {
+          value:'Quilon',
+          label:'Quilon',
+        },
+        {
+          value:'Trivandrum',
+          label:'Trivandrum',
+        },
+        {
+          value:'Kannur',
+          label:'Kannur',
+        },
+        {
+          value:'Vinayapuram',
+          label:'Vinayapuram',
+        },
+        {
+          value:'Alleppey',
+          label:'Alleppey',
+        },
+        {
+          value:'Calicut',
+          label:'Calicut',
+        },
+        {
+          value:'Kottapuram',
+          label:'Kottapuram',
+        },
+        {
+          value:'Neyyattinkara',
+          label:'Neyyattinkara',
+        },
+        {
+          value:'Sultanpet',
+          label:'Sultanpet',
+        },
+      ],
+    },
+
+  ];
   const {
     name,
     school,
@@ -101,6 +150,9 @@ export const CommunityForm = () => {
 
     console.log("Received values of form: ", data);
   };
+  function onChange(value){
+  console.log(value);
+  }
 
   return (
     <>
@@ -180,18 +232,7 @@ export const CommunityForm = () => {
               },
             ]}
           >
-            <Select defaultValue=" ">
-              <Option value="Kochi">Kochi</Option>
-              <Option value="Quilon">Quilon</Option>
-              <Option value="Trivandrum">Trivandrum</Option>
-              <Option value="Kannur">Kannur</Option>
-              <Option value="Vinayapuram">Vinayapuram</Option>
-              <Option value="Alleppey">Alleppey</Option>
-              <Option value="Calicut">Calicut</Option>
-              <Option value="Kottapuram">Kottapuram</Option>
-              <Option value="Neyyattinkara">Neyyattinkara</Option>
-              <Option value="Sultanpet">Sultanpet</Option>
-            </Select>
+            <Cascader options={options} onChange={onChange}/>
           </Item>
           <Item
             name="parish_name"
