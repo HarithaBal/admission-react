@@ -43,10 +43,6 @@ export const Login = () => {
                         name="basic"
                         labelCol={{ span: 8 }}
                         wrapperCol={{ span: 16 }}
-                        initialValues={{
-                            email: "jane@example.com",
-                            password: "password",
-                        }}
                         onFinish={onFinish}
                     >
                         <Form.Item

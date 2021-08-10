@@ -81,7 +81,6 @@ export const CommunityForm = () => {
       preferences,
       place,
     };
-
     if (isAddressSame) {
       data["currentAddress"] = data["permanentAddress"];
       data["currentPin"] = data["permanentPin"];

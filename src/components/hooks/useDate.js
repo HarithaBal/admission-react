@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { usePersistedState } from "./usePersistedState";
 
-export const useDate = (initialValue = null) => {
-    const [date, setDate] = useState(initialValue);
+export const useDate = (initialValue = null, persistKey) => {
+    const [date, setDate] = usePersistedState(initialValue, persistKey);
 
     const updateDate = (_, date) => {
         setDate(date);

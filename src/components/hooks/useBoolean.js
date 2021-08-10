@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { usePersistedState } from "./usePersistedState";
 
-export const useBoolean = (initialValue) => {
-    const [value, setValue] = useState(initialValue);
+export const useBoolean = (initialValue, persistKey) => {
+  const [value, setValue] = usePersistedState(initialValue, persistKey);
 
-    const toggleValue = () => {
-        setValue((value) => !value);
-    };
+  const toggleValue = () => {
+    setValue((value) => !value);
+  };
 
-    return [value, toggleValue, setValue];
+  return [value, toggleValue, setValue];
 };

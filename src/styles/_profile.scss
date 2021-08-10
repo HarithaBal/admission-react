@@ -1,0 +1,38 @@
+.profile {
+  h1 {
+    text-align: center;
+  }
+
+  &-contents {
+    display: flex;
+  }
+
+  &-details {
+    flex: 1;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      margin: 0.5em 0;
+
+      &--type {
+        font-size: 2em;
+        color: $gray;
+      }
+
+      &--value {
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  .change-password {
+    padding: 2em;
+    flex: 3;
+  }
+}

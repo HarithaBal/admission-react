@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { usePersistedState } from "./usePersistedState";
 
-export const useDynamicObject = (newValue) => {
-  const [values, setValues] = useState([{ ...newValue() }]);
+export const useDynamicObject = (newValue, persistKey) => {
+  const [values, setValues] = usePersistedState(
+    [{ ...newValue() }],
+    persistKey
+  );
 
   const addNewValue = () => {
     setValues((values) => [...values, { ...newValue() }]);
