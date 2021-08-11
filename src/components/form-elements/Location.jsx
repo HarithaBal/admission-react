@@ -3,13 +3,17 @@ import { DataContext } from "../services/DataService";
 import { Card, Input, Select } from "antd";
 
 export const Location = () => {
-  const { state,setState,district,setDistrict,taluk,setTaluk,gramaPanchayath, setGramaPanchayath } = useContext(DataContext);
+  const { state, district, taluk, gramaPanchayath, setGramaPanchayath } =
+    useContext(DataContext);
   const { Option, OptGroup } = Select;
+  function onChange(value) {
+    console.log(`selected ${value}`);
+  }
   return (
     <Card>
       <div className="label">Place of Residence: State</div>
 
-      <Select value={state} onChange={setState}>
+      <Select defaultValue={state} onChange={onChange}>
         <OptGroup label="State">
           <Option value="Andhra Pradesh">Andhra Pradesh</Option>
           <Option value="Arunachal Pradesh">Arunachal Pradesh</Option>
@@ -56,7 +60,7 @@ export const Location = () => {
         </OptGroup>
       </Select>
       <div className="label">District</div>
-      <Select value={district} onChange={setDistrict}>
+      <Select defaultValue={district} onChange={onChange}>
         <OptGroup label="Kerala">
           <Option value="Alappuzha">Alappuzha</Option>
           <Option value="Ernakulam">Ernakulam</Option>
@@ -75,7 +79,7 @@ export const Location = () => {
         </OptGroup>
       </Select>
       <div className="label">Taluk</div>
-      <Select value={taluk} onChange={setTaluk}>
+      <Select defaultValue={taluk} onChange={onChange}>
         <OptGroup label="Thiruvananthapuram">
           <Option value="Neyyattinkara">Neyyattinkara</Option>
           <Option value="Kattakkada">Kattakkada</Option>
