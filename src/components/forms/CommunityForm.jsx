@@ -6,10 +6,9 @@ import {
   Card,
   Checkbox,
   message,
-  Select,
-  Cascader
+  Cascader,
 } from "antd";
-import React, { useContext } from "react";
+import React, {useContext } from "react";
 import { Declaration } from "../Declaration";
 import { Address } from "../form-elements/Address";
 import { DOB } from "../form-elements/DOB";
@@ -27,61 +26,62 @@ import { DeclarationContext } from "../services/DeclarationService";
 import { plainOptions } from "./ManagementForm";
 import { Location } from "../form-elements/Location";
 import { CommunityDataContext } from "../services/CommunityDataService";
+import SecondLanguage from "../form-elements/SecondLanguage";
+import { usePersistedState } from "../hooks/usePersistedState";
 const { Item } = Form;
 
 export const CommunityForm = () => {
-
   const { token } = useContext(AuthContext);
   const { accepted, place } = useContext(DeclarationContext);
   const { set } = useContext(CommunityDataContext);
-  const options= [
+  const [diocese,setDiocese]=usePersistedState("","diocese");
+  const options = [
     {
-      value:'Kerala',
-      label:'Kerala',
-      children:[
+      value: "Kerala",
+      label: "Kerala",
+      children: [
         {
-          value:'Kochi',
-          label:'Kochi',
+          value: "Kochi",
+          label: "Kochi",
         },
         {
-          value:'Quilon',
-          label:'Quilon',
+          value: "Quilon",
+          label: "Quilon",
         },
         {
-          value:'Trivandrum',
-          label:'Trivandrum',
+          value: "Trivandrum",
+          label: "Trivandrum",
         },
         {
-          value:'Kannur',
-          label:'Kannur',
+          value: "Kannur",
+          label: "Kannur",
         },
         {
-          value:'Vinayapuram',
-          label:'Vinayapuram',
+          value: "Vinayapuram",
+          label: "Vinayapuram",
         },
         {
-          value:'Alleppey',
-          label:'Alleppey',
+          value: "Alleppey",
+          label: "Alleppey",
         },
         {
-          value:'Calicut',
-          label:'Calicut',
+          value: "Calicut",
+          label: "Calicut",
         },
         {
-          value:'Kottapuram',
-          label:'Kottapuram',
+          value: "Kottapuram",
+          label: "Kottapuram",
         },
         {
-          value:'Neyyattinkara',
-          label:'Neyyattinkara',
+          value: "Neyyattinkara",
+          label: "Neyyattinkara",
         },
         {
-          value:'Sultanpet',
-          label:'Sultanpet',
+          value: "Sultanpet",
+          label: "Sultanpet",
         },
       ],
     },
-
   ];
   const {
     name,
@@ -150,11 +150,7 @@ export const CommunityForm = () => {
 
     console.log("Received values of form: ", data);
   };
-  function onChange(value){
-  console.log(value);
-  }
-
-  return (
+ return (
     <>
       <FormHeader />
       <div className="form--heading">
@@ -232,7 +228,7 @@ export const CommunityForm = () => {
               },
             ]}
           >
-            <Cascader options={options} onChange={onChange}/>
+            <Cascader defaultValue={diocese} options={options} onChange={setDiocese} />
           </Item>
           <Item
             name="parish_name"
@@ -247,24 +243,12 @@ export const CommunityForm = () => {
           </Item>
         </Card>
 
-        <Preferences />
-
-        <Item
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-          label="Second language chosen"
-          name="second_language"
-        >
-          <Input placeholder="Eg: Hindi" />
-        </Item>
-
         <Marks />
-
         <Divider />
-
+        <Preferences />
+        <Divider />
+        <SecondLanguage />
+        <Divider />
         <Declaration />
 
         <Item>

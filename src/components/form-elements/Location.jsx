@@ -1,19 +1,89 @@
 import React, { useContext } from "react";
 import { DataContext } from "../services/DataService";
-import { Card, Input, Select } from "antd";
+import { usePersistedState } from "../hooks/usePersistedState";
+import { Card, Input,Form,Select,Cascader } from "antd";
+const {Item}=Form;
+const states = [
+  {
+    value: "Kerala",
+    label: "Kerala",
+    children: [
+      {
+        value: "Alappuzha",
+        label:"Alappuzha",
+      },
+      {
+        value: "Ernakulam",
+        label:"Ernakulam",
 
+      },
+      {
+        value: "Idukki",
+        label:"Idukki",
+      },
+      {
+        value: "Kannur",
+        label:"Kannur",
+      },
+      {
+        value: "Kasaragod",
+        label:"Kasaragod",
+      },
+      {
+        value: "Kollam",
+        label:"Kollam",
+      },
+      {
+        value: "Kottayam",
+        label:"Kottayam",
+      },
+      {
+        value: "Kozhikode",
+        label:"Kozhikode",
+      },
+      {
+        value: "Malappuram",
+        label:"Malappuram",
+      },
+      {
+        value: "Palakkad",
+        label:"Palakkad",
+      },
+      {
+        value: "Pathanamthitta",
+        label:"Pathanamthitta",
+      },
+      {
+        value: "Thiruvananthapuram",
+        label:"Thiruvananthapuram",
+      },
+      {
+        value: "Thrissur",
+        label:"Thrissur",
+      },
+      {
+        value: "Wayanad",
+        label:"Wayanad",
+      },
+    ],
+  },
+];
 export const Location = () => {
-  const { state, district, taluk, gramaPanchayath, setGramaPanchayath } =
+  const {gramaPanchayath, setGramaPanchayath } =
     useContext(DataContext);
+  const [state, setState] = usePersistedState("", "state");
+const [district,setDistrict]=usePersistedState("","district");
+  const [taluk, setTaluk] = usePersistedState("", "taluk");
   const { Option, OptGroup } = Select;
-  function onChange(value) {
-    console.log(`selected ${value}`);
-  }
   return (
     <Card>
       <div className="label">Place of Residence: State</div>
-
-      <Select defaultValue={state} onChange={onChange}>
+      <Select
+        value={state}
+        
+        onChange={setState}
+        placeholder="Select State"
+      >
         <OptGroup label="State">
           <Option value="Andhra Pradesh">Andhra Pradesh</Option>
           <Option value="Arunachal Pradesh">Arunachal Pradesh</Option>
@@ -59,27 +129,14 @@ export const Location = () => {
           <Option value="Puducherry">Puducherry</Option>
         </OptGroup>
       </Select>
+
       <div className="label">District</div>
-      <Select defaultValue={district} onChange={onChange}>
-        <OptGroup label="Kerala">
-          <Option value="Alappuzha">Alappuzha</Option>
-          <Option value="Ernakulam">Ernakulam</Option>
-          <Option value="Idukki">Idukki</Option>
-          <Option value="Kannur">Kannur</Option>
-          <Option value="Kasaragod">Kasaragod</Option>
-          <Option value="Kollam">Kollam</Option>
-          <Option value="Kottayam">Kottayam</Option>
-          <Option value="Kozhikode"> Kozhikode</Option>
-          <Option value="Malappuram">Malappuram</Option>
-          <Option value="Palakkad">Palakkad</Option>
-          <Option value="Pathanamthitta">Pathanamthitta</Option>
-          <Option value="Thiruvananthapuram">Thiruvananthapuram</Option>
-          <Option value="Thrissur">Thrissur</Option>
-          <Option value="Wayanad">Wayanad</Option>
-        </OptGroup>
-      </Select>
+      <Item name="district">
+      <Cascader options={states} defaultValue={district} onChange={setDistrict} />
+      </Item>
+      
       <div className="label">Taluk</div>
-      <Select defaultValue={taluk} onChange={onChange}>
+      <Select defaultValue={taluk} onChange={setTaluk}>
         <OptGroup label="Thiruvananthapuram">
           <Option value="Neyyattinkara">Neyyattinkara</Option>
           <Option value="Kattakkada">Kattakkada</Option>
