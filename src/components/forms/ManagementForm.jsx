@@ -27,6 +27,7 @@ import { Marks } from "../form-elements/Marks";
 import { DataContext } from "../services/DataService";
 import { managementFormRequest } from "../requests/authRequests";
 import { AuthContext } from "../services/AuthService";
+import SecondLanguage from "../form-elements/SecondLanguage";
 
 const { Item } = Form;
 
@@ -244,17 +245,7 @@ export const ManagementForm = () => {
                 <Divider />
                 <Preferences />
                 <Divider />
-                <Item
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                    label="Second language chosen"
-                    name="second_language"
-                >
-                    <Input placeholder="Eg: Hindi" />
-                </Item>
+                <SecondLanguage />
                 <Divider />
                 <Declaration />
 
