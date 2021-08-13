@@ -1,5 +1,14 @@
-import { Divider, Form, Button, Input, Card, Checkbox, message } from "antd";
-import React, { useContext } from "react";
+import {
+  Divider,
+  Form,
+  Button,
+  Input,
+  Card,
+  Checkbox,
+  message,
+  Cascader,
+} from "antd";
+import React, {useContext } from "react";
 import { Declaration } from "../Declaration";
 import { Address } from "../form-elements/Address";
 import { DOB } from "../form-elements/DOB";
@@ -17,14 +26,63 @@ import { DeclarationContext } from "../services/DeclarationService";
 import { plainOptions } from "./ManagementForm";
 import { Location } from "../form-elements/Location";
 import { CommunityDataContext } from "../services/CommunityDataService";
-
+import SecondLanguage from "../form-elements/SecondLanguage";
+import { usePersistedState } from "../hooks/usePersistedState";
 const { Item } = Form;
 
 export const CommunityForm = () => {
   const { token } = useContext(AuthContext);
   const { accepted, place } = useContext(DeclarationContext);
   const { set } = useContext(CommunityDataContext);
-
+  const [diocese,setDiocese]=usePersistedState("","diocese");
+  const options = [
+    {
+      value: "Kerala",
+      label: "Kerala",
+      children: [
+        {
+          value: "Kochi",
+          label: "Kochi",
+        },
+        {
+          value: "Quilon",
+          label: "Quilon",
+        },
+        {
+          value: "Trivandrum",
+          label: "Trivandrum",
+        },
+        {
+          value: "Kannur",
+          label: "Kannur",
+        },
+        {
+          value: "Vinayapuram",
+          label: "Vinayapuram",
+        },
+        {
+          value: "Alleppey",
+          label: "Alleppey",
+        },
+        {
+          value: "Calicut",
+          label: "Calicut",
+        },
+        {
+          value: "Kottapuram",
+          label: "Kottapuram",
+        },
+        {
+          value: "Neyyattinkara",
+          label: "Neyyattinkara",
+        },
+        {
+          value: "Sultanpet",
+          label: "Sultanpet",
+        },
+      ],
+    },
+  ];
   const {
     name,
     school,
@@ -72,7 +130,6 @@ export const CommunityForm = () => {
       preferences,
       place,
     };
-
     if (isAddressSame) {
       data["currentAddress"] = data["permanentAddress"];
       data["currentPin"] = data["permanentPin"];
@@ -93,8 +150,7 @@ export const CommunityForm = () => {
 
     console.log("Received values of form: ", data);
   };
-
-  return (
+ return (
     <>
       <FormHeader />
       <div className="form--heading">
@@ -136,7 +192,7 @@ export const CommunityForm = () => {
 
         <Item
           name="differently_abled"
-          label="Whether applicant is differently abled (Choose relevant)"
+          label="Whether applicant is differently abled (Choose relevant).If applicable, attach the medical certificate and supporting documents."
           rules={[
             {
               required: true,
@@ -148,20 +204,9 @@ export const CommunityForm = () => {
 
         <Address />
 
-        <Card title="Religion and caste / community">
+        <Card title="Caste / community">
           <Item
-            name="religion"
-            label="Religion"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Input placeholder="XYZ" />
-          </Item>{" "}
-          <Item
-            name="caste_community"
+            name="caste_name"
             label="Caste / Community"
             rules={[
               {
@@ -169,14 +214,25 @@ export const CommunityForm = () => {
               },
             ]}
           >
-            <Input placeholder="ABC Religion, XYZ Caste" />
+            <Input placeholder="Latin Catholic/Anglo-Indian" />
           </Item>
         </Card>
 
         <Card title="Name of Parish and Diocese">
           <Item
+            name="diocese_name"
+            label="Diocese"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Cascader defaultValue={diocese} options={options} onChange={setDiocese} />
+          </Item>
+          <Item
             name="parish_name"
-            label="Name"
+            label="Parish"
             rules={[
               {
                 required: true,
@@ -187,24 +243,12 @@ export const CommunityForm = () => {
           </Item>
         </Card>
 
-        <Preferences />
-
-        <Item
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-          label="Second language chosen"
-          name="second_language"
-        >
-          <Input placeholder="Eg: Hindi" />
-        </Item>
-
         <Marks />
-
         <Divider />
-
+        <Preferences />
+        <Divider />
+        <SecondLanguage />
+        <Divider />
         <Declaration />
 
         <Item>
