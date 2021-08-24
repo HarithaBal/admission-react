@@ -56,14 +56,18 @@ export const addPaymentData = (values, token) => {
   });
 };
 
-export const fetchStudents = () => {
+export const fetchStudents = (page, limit) => {
   api.defaults.headers.common = { Authorization: "bearer " };
 
-  return api.get("/api/users/students");
+  return api.get(`/api/users/students?page=${page}&limit=${limit}`);
 };
 
 export const fetchStudent = (studentId) => {
   api.defaults.headers.common = { Authorization: "bearer " };
 
   return api.get(`/api/users/students/${studentId}`);
+};
+
+export const verifyPayment = (paymentId, data) => {
+  return api.patch(`/api/payments/${paymentId}`, { data });
 };

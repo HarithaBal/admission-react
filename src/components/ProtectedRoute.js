@@ -8,7 +8,7 @@ import { AdminLayout } from "./layouts/AdminLayout";
 const Layout = ({ children }) => {
   const { user } = useContext(AuthContext);
 
-  if (user.user_type === "admin") {
+  if (user?.user_type === "admin") {
     return <AdminLayout>{children}</AdminLayout>;
   }
 

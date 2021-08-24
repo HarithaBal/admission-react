@@ -178,7 +178,43 @@ a {
 
 .student {
   &:hover {
-    background: rgba($gray, 0.2);
+    background: rgba($gray, 0.1);
     cursor: pointer;
+  }
+}
+
+.pagination {
+  background: $white;
+  position: sticky;
+  bottom: 0;
+  z-index: 999;
+
+  .ant-card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+.students {
+  .student {
+    .ant-card-body {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      div {
+        flex: 1;
+      }
+    }
+
+    &-email {
+      display: flex;
+      flex-direction: column;
+
+      span {
+        flex: 1;
+      }
+    }
   }
 }

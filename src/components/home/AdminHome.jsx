@@ -4,7 +4,7 @@ export const AdminHome = () => {
   return (
     <div>
       <div className="options">
-        <Link to="/students/registered" className="options-item">
+        <Link to="/students" className="options-item">
           Registered Students
         </Link>
         <Link to="/students/unapproved" className="options-item">

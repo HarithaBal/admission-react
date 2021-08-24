@@ -1,7 +1,7 @@
 import { Tag, Alert, Card, Divider, Spin, Tooltip, Button } from "antd";
 import React from "react";
 import { useParams } from "react-router";
-import { fetchStudent } from "../../requests/authRequests";
+import { fetchStudent, verifyPayment } from "../../requests/authRequests";
 import { capitalize } from "../../utils/helpers";
 
 export const Student = () => {
@@ -48,9 +48,30 @@ export const Student = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [studentId]);
 
+  const handleVerification = async (payment) => {
+    const choice = window.confirm(
+      "Do you want to verify this payment as 'done' ?"
+    );
+    if (!choice) return;
+
+    setLoading(true);
+
+    const data = { ...payment.data, isVerified: true };
+
+    try {
+      await verifyPayment(payment.id, data);
+      fetch();
+    } catch (error) {
+      setError(JSON.stringify(error));
+      console.log("error in verifying payment");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
-      {error && <Alert type="error" message={error} />}
+      {error && <Alert closable type="error" message={error} />}
       {loading && <Spin />}
 
       {student && (
@@ -61,7 +82,7 @@ export const Student = () => {
           </h2>
           <Divider />
           {nonPayments.map((detail) => (
-            <Card title={capitalize(detail.doc_type.name)}>
+            <Card key={detail.id} title={capitalize(detail.doc_type.name)}>
               <Alert type="info" message="details will be shown here" />
             </Card>
           ))}
@@ -106,17 +127,20 @@ export const Student = () => {
                   ))}
                 </div>
               </div>
-
-              <Divider />
-              <Button
-                onClick={() => {
-                  alert("Will be activated in production");
-                }}
-                danger
-                type="dashed"
-              >
-                Verify Payment
-              </Button>
+              {!detail.data?.isVerified && (
+                <>
+                  <Divider />
+                  <Button
+                    onClick={() => {
+                      handleVerification(detail);
+                    }}
+                    danger
+                    type="dashed"
+                  >
+                    Verify Payment
+                  </Button>
+                </>
+              )}
             </Card>
           ))}
         </div>

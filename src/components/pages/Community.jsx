@@ -18,7 +18,9 @@ export const Community = () => {
 
     try {
       const response = await getCommunityFormRequest(token);
-      set(response.data.data);
+      if (response.data.data) {
+        set(response.data.data);
+      }
     } catch (error) {
       reset();
     }

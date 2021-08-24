@@ -5,5 +5,5 @@ import { AuthContext } from "../services/AuthService";
 export const Home = () => {
   const { user } = useContext(AuthContext);
 
-  return user.user_type === "admin" ? <AdminHome /> : <StudentHome />;
+  return user?.user_type === "admin" ? <AdminHome /> : <StudentHome />;
 };

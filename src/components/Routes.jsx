@@ -26,11 +26,7 @@ export const Routes = () => {
       <ProtectedRoute exact path="/forms/documents" component={DocumentsForm} />
       <ProtectedRoute path="/profile" component={Profile} />
       <ProtectedRoute path="/payment" component={Payment} />
-      <ProtectedRoute
-        exact
-        path="/students/registered"
-        component={AllStudents}
-      />
+      <ProtectedRoute exact path="/students" component={AllStudents} />
       <ProtectedRoute exact path="/students/:studentId" component={Student} />
       <Route component={NotFound} />
     </Switch>

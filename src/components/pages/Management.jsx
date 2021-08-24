@@ -18,7 +18,9 @@ export const Management = () => {
 
     try {
       const response = await getManagementFormRequest(token);
-      set(response.data.data);
+      if (response.data.data) {
+        set(response.data.data);
+      }
     } catch (error) {
       reset();
     }
