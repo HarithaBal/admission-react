@@ -12,6 +12,7 @@ import { Management } from "./pages/Management";
 import { Payment } from "./pages/Payment";
 import { DocumentsForm } from "./forms/DocumentsForm";
 import { AllStudents } from "./pages/students/AllStudents";
+import { Student } from "./pages/students/Student";
 
 export const Routes = () => {
   return (
@@ -25,7 +26,12 @@ export const Routes = () => {
       <ProtectedRoute exact path="/forms/documents" component={DocumentsForm} />
       <ProtectedRoute path="/profile" component={Profile} />
       <ProtectedRoute path="/payment" component={Payment} />
-      <ProtectedRoute path="/students/registered" component={AllStudents} />
+      <ProtectedRoute
+        exact
+        path="/students/registered"
+        component={AllStudents}
+      />
+      <ProtectedRoute exact path="/students/:studentId" component={Student} />
       <Route component={NotFound} />
     </Switch>
   );

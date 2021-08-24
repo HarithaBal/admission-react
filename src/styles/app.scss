@@ -175,3 +175,10 @@ a {
 .column {
   flex-direction: column;
 }
+
+.student {
+  &:hover {
+    background: rgba($gray, 0.2);
+    cursor: pointer;
+  }
+}

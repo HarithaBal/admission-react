@@ -61,3 +61,9 @@ export const fetchStudents = () => {
 
   return api.get("/api/users/students");
 };
+
+export const fetchStudent = (studentId) => {
+  api.defaults.headers.common = { Authorization: "bearer " };
+
+  return api.get(`/api/users/students/${studentId}`);
+};

@@ -1,7 +1,8 @@
-import { Alert, Card, Divider, Spin } from "antd";
+import { Alert, Button, Card, Divider, Spin } from "antd";
 import React, { useEffect } from "react";
 import { fetchStudents } from "../../requests/authRequests";
 import { StudentDetails } from "../../students/StudentDetails";
+import { Link } from "react-router-dom";
 
 export const AllStudents = () => {
   const [loading, setLoading] = React.useState(true);
@@ -41,6 +42,10 @@ export const AllStudents = () => {
             {student.details.length > 0 && (
               <StudentDetails details={student.details} />
             )}
+            <Divider />
+            <Link to={`/students/${student.id}`}>
+              <Button type="primary">View profile</Button>
+            </Link>
           </Card>
         ))}
       </div>
