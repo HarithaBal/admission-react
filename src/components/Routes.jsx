@@ -11,6 +11,7 @@ import { Profile } from "./pages/Profile";
 import { Management } from "./pages/Management";
 import { Payment } from "./pages/Payment";
 import { DocumentsForm } from "./forms/DocumentsForm";
+import { AllStudents } from "./pages/students/AllStudents";
 
 export const Routes = () => {
   return (
@@ -24,6 +25,7 @@ export const Routes = () => {
       <ProtectedRoute exact path="/forms/documents" component={DocumentsForm} />
       <ProtectedRoute path="/profile" component={Profile} />
       <ProtectedRoute path="/payment" component={Payment} />
+      <ProtectedRoute path="/students/registered" component={AllStudents} />
       <Route component={NotFound} />
     </Switch>
   );

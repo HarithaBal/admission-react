@@ -11,3 +11,7 @@ export const getPersistedValue = (key, defaultValue = null) => {
 
   return defaultValue;
 };
+
+export const capitalize = (value) => {
+  return value.replace("_", " ").charAt(0).toUpperCase() + value.slice(1);
+};

@@ -55,3 +55,9 @@ export const addPaymentData = (values, token) => {
     doc_type: "payment",
   });
 };
+
+export const fetchStudents = () => {
+  api.defaults.headers.common = { Authorization: "bearer " };
+
+  return api.get("/api/users/students");
+};

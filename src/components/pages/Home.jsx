@@ -1,22 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { AdminHome } from "../home/AdminHome";
+import { StudentHome } from "../home/StudentHome";
+import { AuthContext } from "../services/AuthService";
 export const Home = () => {
-    return (
-        <div>
-            <div className="options">
-                <Link to="/forms/management" className="options-item">
-                    Management Quota
-                </Link>
-                <Link to="/forms/community" className="options-item">
-                    Community Quota
-                </Link>
-                <Link to="/forms/documents" className="options-item">
-                    Upload Supporting Documents
-                </Link>
-                <Link to="/payment" className="options-item">
-                    Payment
-                </Link>
-            </div>
-        </div>
-    );
+  const { user } = useContext(AuthContext);
+
+  return user.user_type === "admin" ? <AdminHome /> : <StudentHome />;
 };
