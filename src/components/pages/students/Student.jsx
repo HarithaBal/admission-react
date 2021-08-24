@@ -45,7 +45,7 @@ export const Student = () => {
 
   React.useEffect(() => {
     fetch();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [studentId]);
 
   return (
@@ -108,7 +108,13 @@ export const Student = () => {
               </div>
 
               <Divider />
-              <Button danger type="dashed">
+              <Button
+                onClick={() => {
+                  alert("Will be activated in production");
+                }}
+                danger
+                type="dashed"
+              >
                 Verify Payment
               </Button>
             </Card>
