@@ -8,7 +8,7 @@ import {
   message,
   Cascader,
 } from "antd";
-import React, {useContext } from "react";
+import React, { useContext } from "react";
 import { Declaration } from "../Declaration";
 import { Address } from "../form-elements/Address";
 import { DOB } from "../form-elements/DOB";
@@ -34,7 +34,7 @@ export const CommunityForm = () => {
   const { token } = useContext(AuthContext);
   const { accepted, place } = useContext(DeclarationContext);
   const { set } = useContext(CommunityDataContext);
-  const [diocese,setDiocese]=usePersistedState("","diocese");
+  const [diocese, setDiocese] = usePersistedState("", "diocese");
   const options = [
     {
       value: "Kerala",
@@ -150,7 +150,7 @@ export const CommunityForm = () => {
 
     console.log("Received values of form: ", data);
   };
- return (
+  return (
     <>
       <FormHeader />
       <div className="form--heading">
@@ -180,6 +180,18 @@ export const CommunityForm = () => {
           ]}
         >
           <Input />
+        </Item>
+
+        <Item
+          name="register_number"
+          label="Register Number"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input type="number" placeholder="Register Number" />
         </Item>
 
         <Gender />
@@ -228,7 +240,11 @@ export const CommunityForm = () => {
               },
             ]}
           >
-            <Cascader defaultValue={diocese} options={options} onChange={setDiocese} />
+            <Cascader
+              defaultValue={diocese}
+              options={options}
+              onChange={setDiocese}
+            />
           </Item>
           <Item
             name="parish_name"
