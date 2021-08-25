@@ -203,8 +203,35 @@ a {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
+      padding-top: 3em;
       div {
         flex: 1;
+      }
+
+      position: relative;
+      overflow: hidden;
+
+      .sl-no {
+        position: absolute;
+        top: 0;
+        left: -15px;
+        color: $white;
+        font-size: large;
+        background: $blue;
+        padding: 0.2em 1em;
+        transform: skew(-35deg);
+
+        span {
+          display: inline-block;
+          transform: skew(35deg);
+        }
+      }
+
+      .user-id {
+        position: absolute;
+        top: 1em;
+        right: 2em;
+        color: $gray;
       }
     }
 

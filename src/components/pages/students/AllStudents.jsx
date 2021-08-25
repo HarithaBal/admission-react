@@ -9,6 +9,7 @@ export const AllStudents = () => {
   const [students, setStudents] = React.useState([]);
   const [error, setError] = React.useState(null);
 
+  const [currentPage, setCurrentPage] = React.useState(1);
   const [page, setPage] = React.useState(1);
   const [limit, setLimit] = React.useState(10);
 
@@ -29,6 +30,7 @@ export const AllStudents = () => {
       setStudents(res.data.data.data);
       console.log(res.data.data.total);
       setPage(res.data.data.total);
+      setCurrentPage(res.data.data.current_page);
     } catch (error) {
       console.log("error in fetching students");
       setError(JSON.stringify(error));
@@ -47,14 +49,22 @@ export const AllStudents = () => {
     await fetch(page, limit);
   };
 
+  const getUpperLimit = (val) => {
+    return val > page ? page : val;
+  };
+
   return (
     <div>
       {error && <Alert type="error" message={error} />}
       {loading && <Spin />}
 
       <div className="students">
-        {students.map((student) => (
+        {students.map((student, index) => (
           <Card key={student.id} className="student">
+            <div className="sl-no">
+              <span># {index + 1} </span>
+            </div>
+            <span className="user-id">Student ID: {student.id}</span>
             <div className="student-name">{student.name || ""}</div>
             <div className="student-email">
               <span>{student.email || ""}</span>
@@ -73,14 +83,17 @@ export const AllStudents = () => {
       </div>
       <Card className="pagination">
         <Pagination
-          defaultCurrent={1}
+          defaultCurrent={currentPage}
           onChange={handlePageChange}
           onShowSizeChange={handlePageChange}
           total={page}
           responsive
           hideOnSinglePage
         />
-        <span>showing {limit} results</span>
+        <span>
+          showing {(currentPage - 1) * limit + 1} to{" "}
+          {getUpperLimit(currentPage * limit)} of {page} results
+        </span>
       </Card>
       <Space />
     </div>
