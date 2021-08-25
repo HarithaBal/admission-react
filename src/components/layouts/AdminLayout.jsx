@@ -27,14 +27,14 @@ export const AdminLayout = ({ children }) => {
           </NavLink>
         </div>
         <div className="nav-right">
-          <Tooltip title="Logout">
-            <Button
-              className="nav-right--name"
-              type="primary"
-              icon={<LogOut />}
-              onClick={logout}
-            />
-          </Tooltip>
+          <Button
+            className="nav-right--name"
+            type="primary"
+            icon={<LogOut />}
+            onClick={logout}
+          >
+            Logout
+          </Button>
           <Link to="/profile" className="nav-right--name">
             Admin
           </Link>
