@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../services/AuthService";
 import { HelpCircle, Home, LogOut } from "react-feather";
 import { Link, NavLink } from "react-router-dom";
-import { Button, Tooltip } from "antd";
+import { Button } from "antd";
 
 export const StudentLayout = ({ children }) => {
   const { user, logout } = useContext(AuthContext);

@@ -217,7 +217,7 @@ export const Marks = () => {
                 updateGrade(otherGrade.id, "maxMarks", e);
               }}
             >
-              {options.map((option) => (
+              {cbseOptions.map((option) => (
                 <Select.Option key={option} value={option}>
                   {option}
                 </Select.Option>
