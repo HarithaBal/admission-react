@@ -4,6 +4,7 @@ import { Plus, X } from "react-feather";
 import { DataContext } from "../services/DataService";
 
 const options = ["A+", "A", "B+", "B", "C+", "C", "D+", "D"];
+const cbseOptions = ["A1", "A2", "B1", "B2", "C1", "C2", "D1"];
 
 export const Marks = () => {
   const {
@@ -208,15 +209,20 @@ export const Marks = () => {
                 updateGrade(otherGrade.id, "marks", e.target.value);
               }}
             />
-            <Input
-              type="text"
+            <Select
               placeholder="Grade"
               className="flex-1"
               value={otherGrade.maxMarks}
               onChange={(e) => {
-                updateGrade(otherGrade.id, "maxMarks", e.target.value);
+                updateGrade(otherGrade.id, "maxMarks", e);
               }}
-            />
+            >
+              {options.map((option) => (
+                <Select.Option key={option} value={option}>
+                  {option}
+                </Select.Option>
+              ))}
+            </Select>
             <Button
               shape="circle"
               icon={<X size="16px" />}
