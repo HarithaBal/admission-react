@@ -57,8 +57,8 @@ export const CommunityForm = () => {
           label: "Kannur",
         },
         {
-          value: "Vinayapuram",
-          label: "Vinayapuram",
+          value: "Vijayapuram",
+          label: "Vijayapuram",
         },
         {
           value: "Alleppey",
@@ -79,6 +79,10 @@ export const CommunityForm = () => {
         {
           value: "Sultanpet",
           label: "Sultanpet",
+        },
+        {
+          value: "Verapoly",
+          label: "Verapoly",
         },
       ],
     },
