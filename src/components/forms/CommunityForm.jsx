@@ -198,6 +198,18 @@ export const CommunityForm = () => {
           <Input type="number" placeholder="Register Number" />
         </Item>
 
+        <Item
+          name="single_window_application_number"
+          label="Single Window Application Number"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Item>
+
         <Gender />
 
         <DOB />
