@@ -28,6 +28,7 @@ import { Location } from "../form-elements/Location";
 import { CommunityDataContext } from "../services/CommunityDataService";
 import SecondLanguage from "../form-elements/SecondLanguage";
 import { usePersistedState } from "../hooks/usePersistedState";
+import { useHistory } from "react-router";
 const { Item } = Form;
 
 export const CommunityForm = () => {
@@ -35,6 +36,10 @@ export const CommunityForm = () => {
   const { accepted, place } = useContext(DeclarationContext);
   const { set } = useContext(CommunityDataContext);
   const [diocese, setDiocese] = usePersistedState("", "diocese");
+  const [loading, setLoading] = React.useState(false);
+
+  const history = useHistory();
+
   const options = [
     {
       value: "Kerala",
@@ -143,13 +148,16 @@ export const CommunityForm = () => {
     }
 
     data["previousAttempts"] = havePreviousAttempts ? previousAttempts : [];
-
+    setLoading(true);
     try {
       const response = await communityFormRequest(data, token);
       message.success("Form submitted successfully");
       set(response.data.data);
+      history.push("/");
     } catch (e) {
       message.error("Something went wrong. Please try again");
+    } finally {
+      setLoading(false);
     }
 
     console.log("Received values of form: ", data);
@@ -289,6 +297,7 @@ export const CommunityForm = () => {
             htmlType="submit"
             className="login-form-button"
             disabled={!accepted}
+            loading={loading}
           >
             Submit Form
           </Button>

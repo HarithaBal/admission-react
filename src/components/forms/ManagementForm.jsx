@@ -28,6 +28,7 @@ import { DataContext } from "../services/DataService";
 import { managementFormRequest } from "../requests/authRequests";
 import { AuthContext } from "../services/AuthService";
 import SecondLanguage from "../form-elements/SecondLanguage";
+import { useHistory } from "react-router";
 
 const { Item } = Form;
 
@@ -43,9 +44,12 @@ export const plainOptions = [
 export const ManagementForm = () => {
   const [passing, setPassing] = useDate();
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { token } = useContext(AuthContext);
   const { accepted, place } = useContext(DeclarationContext);
+
+  const history = useHistory();
 
   const {
     name,
@@ -117,12 +121,16 @@ export const ManagementForm = () => {
 
     data["previousAttempts"] = havePreviousAttempts ? previousAttempts : [];
 
+    setLoading(true);
     try {
       const response = await managementFormRequest(data, token);
       message.success("Form submitted successfully");
       setSubmitted(response.data);
+      history.push("/");
     } catch (e) {
       message.error("Something went wrong. Please try again");
+    } finally {
+      setLoading(false);
     }
 
     console.log("Received values of form: ", data);
@@ -277,6 +285,7 @@ export const ManagementForm = () => {
             htmlType="submit"
             className="login-form-button"
             disabled={!accepted}
+            loading={loading}
           >
             Submit Form
           </Button>
