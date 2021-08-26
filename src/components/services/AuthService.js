@@ -2,6 +2,7 @@ import React from "react";
 import { createContext } from "react";
 import jwt_decode from "jwt-decode";
 import { useCustomState } from "../hooks/useCustomState";
+import { message } from "antd";
 
 export const AuthContext = createContext(null);
 
@@ -29,9 +30,14 @@ export const AuthService = ({ children }) => {
   };
 
   const authenticate = (token) => {
+    const user = jwt_decode(token);
+    console.log({ user });
     setIsAuthenticated(true);
     setToken(token);
-    setUser(jwt_decode(token));
+    setUser({
+      ...user,
+      expires_in: new Date().setSeconds(parseInt(user.expires_in)),
+    });
   };
 
   const logout = () => {
@@ -39,6 +45,17 @@ export const AuthService = ({ children }) => {
     setToken(null);
     setUser(null);
   };
+
+  React.useEffect(() => {
+    if (state.isAuthenticated) {
+      if (new Date() >= state?.user?.expires_in) {
+        // If token has expired
+        message.error(`Token has expired. Please log in again.`);
+        logout();
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state]);
 
   return (
     <AuthContext.Provider value={{ ...state, authenticate, logout }}>

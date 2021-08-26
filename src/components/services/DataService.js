@@ -36,9 +36,7 @@ export const DataService = ({ children }) => {
   const [name, setName] = useTextField("", "name");
   const [school, setSchool] = useTextField("", "school");
   const [gender, setGender] = useTextField("", "gender");
-  const [state, setState] = useTextField("", "state");
-  const [district, setDistrict] = useTextField("", "district");
-  const [taluk, setTaluk] = useTextField("", "taluk");
+  const [location, setLocation] = usePersistedState("", "location");
   const [gramaPanchayath, setGramaPanchayath] = useTextField(
     "",
     "gramaPanchayath"
@@ -117,12 +115,8 @@ export const DataService = ({ children }) => {
         setGender,
         dob,
         setDob,
-        state,
-        setState,
-        district,
-        setDistrict,
-        taluk,
-        setTaluk,
+        location,
+        setLocation,
         gramaPanchayath,
         setGramaPanchayath,
         guardian,
