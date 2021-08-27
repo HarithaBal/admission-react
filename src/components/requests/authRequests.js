@@ -57,17 +57,29 @@ export const addPaymentData = (values, token) => {
 };
 
 export const fetchStudents = (page, limit) => {
-  api.defaults.headers.common = { Authorization: "bearer " };
-
   return api.get(`/api/users/students?page=${page}&limit=${limit}`);
 };
 
 export const fetchStudent = (studentId) => {
-  api.defaults.headers.common = { Authorization: "bearer " };
-
   return api.get(`/api/users/students/${studentId}`);
 };
 
 export const verifyPayment = (paymentId, data) => {
   return api.patch(`/api/payments/${paymentId}`, { data });
+};
+
+export const uploadFile = (formData, token, docType) => {
+  api.defaults.headers.common = { Authorization: "bearer " + token };
+
+  return api.post(`/api/details/documents?doc_type=${docType}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+
+export const getFiles = (token) => {
+  api.defaults.headers.common = { Authorization: "bearer " + token };
+
+  return api.get(`/api/details/documents`);
 };
