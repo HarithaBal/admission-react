@@ -38,6 +38,7 @@ export const CommunityData = () => {
     });
     return isExists;
   }
+
   return (
     <>
       <FormHeader />
@@ -163,110 +164,74 @@ export const CommunityData = () => {
           </div>
         </div>
       </Card>
-      {(details.grades.lang1 ||
-        details.grades.lang2 ||
-        details.grades.eng ||
-        details.grades.hin ||
-        details.grades.phy ||
-        details.grades.che ||
-        details.grades.bio ||
-        details.grades.ss ||
-        details.grades.maths ||
-        details.grades.it) && (
+      {details.grades.lang1 && (
         <Card title="Grades obtained for Qualifying Examination (SSLC)">
-          {details.grades.lang1 && (
-            <div className="detail-container">
-              <div className="detail-container--type">Language 1</div>
-              <div className="detail-container--value">
-                {details.grades.lang1}
-              </div>
+          <div className="detail-container">
+            <div className="detail-container--type">Language 1</div>
+            <div className="detail-container--value">
+              {details.grades.lang1}
             </div>
-          )}
-          {details.grades.lang2 && (
-            <div className="detail-container">
-              <div className="detail-container--type">Language 2</div>
-              <div className="detail-container--value">
-                {details.grades.lang2}
-              </div>
+          </div>
+
+          <div className="detail-container">
+            <div className="detail-container--type">Language 2</div>
+            <div className="detail-container--value">
+              {details.grades.lang2}
             </div>
-          )}
-          {details.grades.eng && (
-            <div className="detail-container">
-              <div className="detail-container--type">English</div>
-              <div className="detail-container--value">
-                {details.grades.eng}
-              </div>
+          </div>
+
+          <div className="detail-container">
+            <div className="detail-container--type">English</div>
+            <div className="detail-container--value">{details.grades.eng}</div>
+          </div>
+
+          <div className="detail-container">
+            <div className="detail-container--type">Hindi</div>
+            <div className="detail-container--value">{details.grades.hin}</div>
+          </div>
+
+          <div className="detail-container">
+            <div className="detail-container--type">Physics</div>
+            <div className="detail-container--value">{details.grades.phy}</div>
+          </div>
+
+          <div className="detail-container">
+            <div className="detail-container--type">Chemistry</div>
+            <div className="detail-container--value">{details.grades.che}</div>
+          </div>
+
+          <div className="detail-container">
+            <div className="detail-container--type">Biology</div>
+            <div className="detail-container--value">{details.grades.bio}</div>
+          </div>
+
+          <div className="detail-container">
+            <div className="detail-container--type">S.S.</div>
+            <div className="detail-container--value">{details.grades.ss}</div>
+          </div>
+
+          <div className="detail-container">
+            <div className="detail-container--type">Maths</div>
+            <div className="detail-container--value">
+              {details.grades.maths}
             </div>
-          )}
-          {details.grades.hin && (
-            <div className="detail-container">
-              <div className="detail-container--type">Hindi</div>
-              <div className="detail-container--value">
-                {details.grades.hin}
-              </div>
-            </div>
-          )}
-          {details.grades.phy && (
-            <div className="detail-container">
-              <div className="detail-container--type">Physics</div>
-              <div className="detail-container--value">
-                {details.grades.phy}
-              </div>
-            </div>
-          )}
-          {details.grades.che && (
-            <div className="detail-container">
-              <div className="detail-container--type">Chemistry</div>
-              <div className="detail-container--value">
-                {details.grades.che}
-              </div>
-            </div>
-          )}
-          {details.grades.bio && (
-            <div className="detail-container">
-              <div className="detail-container--type">Biology</div>
-              <div className="detail-container--value">
-                {details.grades.bio}
-              </div>
-            </div>
-          )}
-          {details.grades.ss && (
-            <div className="detail-container">
-              <div className="detail-container--type">S.S.</div>
-              <div className="detail-container--value">{details.grades.ss}</div>
-            </div>
-          )}
-          {details.grades.maths && (
-            <div className="detail-container">
-              <div className="detail-container--type">Maths</div>
-              <div className="detail-container--value">
-                {details.grades.maths}
-              </div>
-            </div>
-          )}
-          {details.grades.it && (
-            <div className="detail-container">
-              <div className="detail-container--type">I.T.</div>
-              <div className="detail-container--value">{details.grades.it}</div>
-            </div>
-          )}
+          </div>
+
+          <div className="detail-container">
+            <div className="detail-container--type">I.T.</div>
+            <div className="detail-container--value">{details.grades.it}</div>
+          </div>
         </Card>
       )}
       {iaAnyGradeExist() && (
         <Card title="C.B.S.E., I.C.S.E. and for other streams">
           {details.otherGrades.map((items, id) => (
-            <ol>
-              <li key={id}>
-                <div className="detail-container">
-                  <div className="detail-container--type">{items.subject}</div>
+            <div className="detail-container" key={id}>
+              <div className="detail-container--type">{items.subject}</div>
 
-                  <div className="detail-container--value">{items.marks}</div>
-                  <div className="detail-container--value">
-                    {items.maxMarks}
-                  </div>
-                </div>
-              </li>
-            </ol>
+              <div className="detail-container--value">{items.marks}</div>
+              <div className="detail-container--value">{items.maxMarks}</div>
+            </div>
           ))}
         </Card>
       )}
