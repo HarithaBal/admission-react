@@ -23,20 +23,14 @@ export const CommunityData = () => {
         "Commerce Group (Business Studies, Economics, Accountancy, Computer Application)",
     },
   ];
-  function findArrayElementById(id) {
-    return preferencesData.find((element) => {
-      return element.id === id;
+  function findArrayElementById(elementId) {
+    return preferencesData.find(({ id }) => {
+      return id === elementId;
     }).value;
   }
 
-  function iaAnyGradeExist() {
-    var isExists = false;
-    details.otherGrades.forEach(function (item) {
-      if (item.subject != null) {
-        isExists = true;
-      }
-    });
-    return isExists;
+  function isAnyGradeExist() {
+    return details.otherGrades.some((item) => item.subject !== null);
   }
 
   return (
@@ -223,7 +217,7 @@ export const CommunityData = () => {
           </div>
         </Card>
       )}
-      {iaAnyGradeExist() && (
+      {isAnyGradeExist() && (
         <Card title="C.B.S.E., I.C.S.E. and for other streams">
           {details.otherGrades.map((items, id) => (
             <div className="detail-container" key={id}>
